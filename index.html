@@ -12,16 +12,16 @@
         <div class="d-flex justify-center mt-5 w-100">
             <div class="w-100">
                 <header class="d-flex justify-center items-center fiex-wrap my-4">
-                    <button class="btn bg-white shadow mx-1"><</button>
+                    <button id="day-decrease-button" class="btn bg-white shadow mx-1"><</button>
                     <a href="/" class="text-black">
-                        <h1 class="mx-40 text-3xl text-center font-bold">2023-02-24</h1>
+                        <h1 id="todo-date" class="mx-36 text-3xl text-center font-bold">2023년 2월 24일</h1>
                     </a>
-                    <button class="btn bg-white shadow mx-1">></button>
+                    <button id="day-increase-button" class="btn bg-white shadow mx-1">></button>
                 </header>
                 <main class="mt-10 d-flex justify-center">
                     <div class="wrapper bg-white p-10">
                         <div class="heading d-flex justify-between">
-                            <h2 id="todo-title" class="mt-1">오늘의 할 일 목록</h2>
+                            <h2 id="todo-title" class="mt-1">📝 오늘의 할 일 목록</h2>
                             <span class="mr-2 mt-4 todo-count">총 0개</span>
                         </div>
                         <form id="todo-form">
@@ -53,5 +53,6 @@
             </div>
         </div>
     </div>
+    <script type="module" src="./src/js/index.js"></script>
 </body>
 </html>
