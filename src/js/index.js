@@ -9,8 +9,8 @@ const getStringDate = (date) => {
 // - [x] 새로운 할 일을 확인 버튼으로 추가한다.
 // - [x] 새로운 할 일을 엔터키 입력으로 추가한다.
 // - [x] 추가되는 할 일을 ul태그 안에 삽입한다.
-// - [x] 총 할일 개수를 세어 상단에 보여준다.
-// - [] 할 일이 추가되고 나면 input은 빈 값으로 초기화한다.
+// - [x] 총 할 일 개수를 세어 상단에 보여준다.
+// - [x] 할 일이 추가되고 나면 input은 빈 값으로 초기화한다.
 // - [] 사용자 입력 값이 빈 값이라면 추가되지 않는다.
 
 function App() {
@@ -43,6 +43,7 @@ function App() {
             return;
         }
         const todoName = $("#todo-name").value;
+        $("#todo-name").value = "";
         this.todoList.push(todoName);
         render();
     }
