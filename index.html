@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+    <link rel="stylesheet" href="src/css/index.css">
+</head>
+<body>
+    <div id="app" class="px-12">
+        <div class="d-flex justify-center mt-5 w-100">
+            <div class="w-100">
+                <header class="d-flex justify-center items-center fiex-wrap my-4">
+                    <button class="btn bg-white shadow mx-1"><</button>
+                    <a href="/" class="text-black">
+                        <h1 class="mx-40 text-3xl text-center font-bold">2023-02-24</h1>
+                    </a>
+                    <button class="btn bg-white shadow mx-1">></button>
+                </header>
+                <main class="mt-10 d-flex justify-center">
+                    <div class="wrapper bg-white p-10">
+                        <div class="heading d-flex justify-between">
+                            <h2 id="todo-title" class="mt-1">오늘의 할 일 목록</h2>
+                            <span class="mr-2 mt-4 todo-count">총 0개</span>
+                        </div>
+                        <form id="todo-form">
+                            <div class="d-flex w-100">
+                                <label for="todo-name" class="todo-label" hidden>
+                                    할 일
+                                </label>
+                                <input
+                                    type="text"
+                                    id="todo-name"
+                                    name="TodoName"
+                                    class="input-field"
+                                    placeholder="할 일"
+                                    autocomplete="off"
+                                />
+                                <button
+                                    type="button"
+                                    name="submit"
+                                    id="todo-submit-button"
+                                    class="input-submit bg-green-600 ml-2"
+                                >
+                                    확인
+                                </button>
+                            </div>
+                        </form>
+                        <ul id="menu-list" class="mt-3 pl-0"></ul>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
