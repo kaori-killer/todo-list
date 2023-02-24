@@ -7,7 +7,7 @@ const getStringDate = (date) => {
 // ## Todo List 추가
 
 // - [x] 새로운 할 일을 확인 버튼으로 추가한다.
-// - [] 새로운 할 일을 엔터키 입력으로 추가한다.
+// - [x] 새로운 할 일을 엔터키 입력으로 추가한다.
 // - [] 추가되는 할 일을 ul태그 안에 삽입한다.
 // - [] 총 할일 개수를 세어 상단에 보여주낟.
 // - [] 할 일이 추가되고 나면 input은 빈 값으로 초기화한다.
@@ -60,8 +60,9 @@ function App() {
     $("#todo-name").addEventListener("keypress", (e)=>{
         if(e.key !== "Enter") { return; }
         addTodo();
-    })
+    });
 
+    $("#todo-submit-button").addEventListener("click", addTodo);
 }
 
 const app = new App();
