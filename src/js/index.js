@@ -4,17 +4,30 @@ const getStringDate = (date) => {
     return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 }
 
+const store = {
+    setLocalStorage(todo) {
+        localStorage.setItem("todo", JSON.stringify(todo));
+    },
+    getLocalStorage() {
+        return JSON.parse(localStorage.getItem("todo"));
+    }
+}
+
 function App() {
     this.curDate = new Date();
-    this.todoList = [];
+    this.curDateKey; 
+
+    this.todoList = {};
 
     this.init = () => {
+        this.todoList = store.getLocalStorage() ? store.getLocalStorage() : {};
         changeDate(this.curDate);
         render();
     }
 
     const render = () => {
-        const template = this.todoList
+        if(this.todoList[this.curDateKey] === undefined) { this.todoList[this.curDateKey] = []; }
+        const template = this.todoList[this.curDateKey]
         .map((item, index)=>{
                 return (
                     `<li data-todo-id=${index} class="todo-list-item d-flex items-center py-2">
@@ -46,7 +59,9 @@ function App() {
 
     const changeDate = (newDate) => {
         this.curDate = newDate;
-        $("#todo-date").innerText = getStringDate(new Date(this.curDate));        
+        this.curDateKey = getStringDate(new Date(this.curDate)); 
+        $("#todo-date").innerText = this.curDateKey;
+        render();
     }
 
     const decreaseDate = () => {
@@ -60,7 +75,7 @@ function App() {
     }
 
     const countTodo = () => {
-        $(".todo-count").innerText = `총 ${this.todoList.length}개`;
+        $(".todo-count").innerText = `총 ${this.todoList[this.curDateKey].length}개`;
     }
 
     const addTodo = () => {
@@ -70,23 +85,25 @@ function App() {
         }
         const todoName = $("#todo-name").value;
         $("#todo-name").value = "";
-        this.todoList.push(todoName);
+        this.todoList[this.curDateKey].push(todoName);
+        store.setLocalStorage(this.todoList);
         render();
     }
 
     const editTodo = (e) => {
         const todoId = e.target.closest("li").dataset.todoId;
         const $newTodoName = e.target.closest("li").querySelector(".todo-name");
-        console.log($newTodoName)
         const newTodoName = prompt("일정을 수정하세요", $newTodoName.innerText);
-        this.todoList[todoId] = newTodoName;
+        this.todoList[this.curDateKey][todoId] = newTodoName;
+        store.setLocalStorage(this.todoList);
         render();
     }
 
     const removeTodo = (e) => {
         if(!confirm("정말 삭제하시겠습니까?")) { return; }
         const todoId = e.target.closest("li").dataset.todoId;
-        this.todoList.splice(todoId, 1);
+        this.todoList[this.curDateKey].splice(todoId, 1);
+        store.setLocalStorage(this.todoList);
         render();
     }
 

@@ -29,6 +29,6 @@
 
 ## 상태 값 관리
 
-- [] localStorage에 todoList 데이터 저장하기
-- [] 페이지가 로딩되면 localStorage에서 오늘 todoList 값 보여주기
-- [] 날짜 별로 todoList 데이터 저장하기
+- [x] localStorage에 todoList 데이터 저장하기
+- [x] 페이지가 로딩되면 localStorage에서 오늘 todoList 값 보여주기
+- [x] 날짜 별로 todoList 데이터 저장하기
