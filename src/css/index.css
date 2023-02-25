@@ -32,3 +32,16 @@ hr {
   height: 1px;
   background-color: lightgray;
 }
+
+ul li button {
+  width: 60px;
+  cursor: pointer;
+  height: auto;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+}
+
+ul li button:hover {
+  background-color: rgb(229, 231, 235);
+}

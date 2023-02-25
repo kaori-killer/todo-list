@@ -4,15 +4,6 @@ const getStringDate = (date) => {
     return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 }
 
-// ## Todo List 추가
-
-// - [x] 새로운 할 일을 확인 버튼으로 추가한다.
-// - [x] 새로운 할 일을 엔터키 입력으로 추가한다.
-// - [x] 추가되는 할 일을 ul태그 안에 삽입한다.
-// - [x] 총 할 일 개수를 세어 상단에 보여준다.
-// - [x] 할 일이 추가되고 나면 input은 빈 값으로 초기화한다.
-// - [x] 사용자 입력 값이 빈 값이라면 추가되지 않는다.
-
 function App() {
     this.curDate = new Date();
     this.todoList = [];
@@ -26,11 +17,11 @@ function App() {
         const template = this.todoList
         .map((item, index)=>{
                 return (
-                    `<li class="data-todo-id=${index} todo-list-item d-flex items-center py-2">
-                    <span class="w-100 pl-2 todo-name sold-out">${item}</span>
+                    `<li data-todo-id=${index} class="todo-list-item d-flex items-center py-2">
+                    <span class="w-100 pl-2 todo-name complete">${item}</span>
                     <button
                     type="button"
-                    class="bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button"
+                    class="bg-gray-50 text-gray-500 text-sm mr-1 todo-complete-button"
                     >
                     완료
                     </button>
@@ -83,6 +74,23 @@ function App() {
         render();
     }
 
+    const editTodo = (e) => {
+        const todoId = e.target.closest("li").dataset.todoId;
+        const $newTodoName = e.target.closest("li").querySelector(".todo-name");
+        console.log($newTodoName)
+        const newTodoName = prompt("일정을 수정하세요", $newTodoName.innerText);
+        this.todoList[todoId] = newTodoName;
+        render();
+    }
+
+    const removeTodo = (e) => {
+
+    }
+
+    const completeTodo = (e) => {
+
+    }
+
     $("#day-decrease-button").addEventListener("click", (e)=>{
         decreaseDate();
     })
@@ -101,6 +109,21 @@ function App() {
     });
 
     $("#todo-submit-button").addEventListener("click", addTodo);
+
+    $("#todo-list").addEventListener("click", (e)=>{
+        if(e.target.classList.contains("todo-edit-button")){ 
+            editTodo(e);
+            return;
+        }
+        if(e.target.classList.contains("todo-remove-button")){
+            removeTodo(e);
+            return;
+        }
+        if(e.target.classList.contains("todo-complete-button")){
+            completeTodo(e);
+            return;
+        }
+    });
 }
 
 const app = new App();
