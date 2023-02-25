@@ -83,7 +83,7 @@ function App() {
         const todoId = e.target.closest("li").dataset.todoId;
         const $newTodoName = e.target.closest("li").querySelector(".todo-name");
         const newTodoName = prompt("일정을 수정하세요", $newTodoName.innerText);
-        this.todoList[this.curDateKey][todoId] = newTodoName;
+        this.todoList[this.curDateKey][todoId] = newTodoName ? newTodoName : $newTodoName.innerHTML;
         store.setLocalStorage(this.todoList);
         render();
     }
