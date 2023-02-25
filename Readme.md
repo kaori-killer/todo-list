@@ -28,3 +28,7 @@
 - [x] 완료 버튼을 다시 누르면 취소선이 해제된다.
 
 ## 상태 값 관리
+
+- [] localStorage에 todoList 데이터 저장하기
+- [] 페이지가 로딩되면 localStorage에서 오늘 todoList 값 보여주기
+- [] 날짜 별로 todoList 데이터 저장하기
