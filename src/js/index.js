@@ -1,17 +1,6 @@
-const $ = (selector) => document.querySelector(selector);
-
-const getStringDate = (date) => {
-    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
-}
-
-const store = {
-    setLocalStorage(todo) {
-        localStorage.setItem("todo", JSON.stringify(todo));
-    },
-    getLocalStorage() {
-        return JSON.parse(localStorage.getItem("todo"));
-    }
-}
+import { $ } from "./utils/dom.js";
+import { store } from "./store/store.js";
+import { getStringDate } from "./date/date.js";
 
 function App() {
     this.curDate = new Date();
