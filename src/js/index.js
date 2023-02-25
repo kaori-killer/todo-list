@@ -84,7 +84,10 @@ function App() {
     }
 
     const removeTodo = (e) => {
-
+        if(!confirm("정말 삭제하시겠습니까?")) { return; }
+        const todoId = e.target.closest("li").dataset.todoId;
+        this.todoList.splice(todoId, 1);
+        render();
     }
 
     const completeTodo = (e) => {
