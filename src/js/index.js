@@ -12,6 +12,7 @@ function App() {
         this.todoList = store.getLocalStorage() ? store.getLocalStorage() : {};
         changeDate(this.curDate);
         render();
+        initEventListener();
     }
 
     const render = () => {
@@ -100,39 +101,41 @@ function App() {
         e.target.closest("li").querySelector(".todo-name").classList.toggle("completed");
     }
 
-    $("#day-decrease-button").addEventListener("click", (e)=>{
-        decreaseDate();
-    })
-
-    $("#day-increase-button").addEventListener("click", (e)=>{
-        increaseDate();
-    })
-
-    $("#todo-form").addEventListener("submit", (e)=>{
-        e.preventDefault();
-    });
-
-    $("#todo-name").addEventListener("keypress", (e)=>{
-        if(e.key !== "Enter") { return; }
-        addTodo();
-    });
-
-    $("#todo-submit-button").addEventListener("click", addTodo);
-
-    $("#todo-list").addEventListener("click", (e)=>{
-        if(e.target.classList.contains("todo-edit-button")){ 
-            editTodo(e);
-            return;
-        }
-        if(e.target.classList.contains("todo-remove-button")){
-            removeTodo(e);
-            return;
-        }
-        if(e.target.classList.contains("todo-complete-button")){
-            completeTodo(e);
-            return;
-        }
-    });
+    const initEventListener = () => {
+        $("#day-decrease-button").addEventListener("click", (e)=>{
+            decreaseDate();
+        })
+    
+        $("#day-increase-button").addEventListener("click", (e)=>{
+            increaseDate();
+        })
+    
+        $("#todo-form").addEventListener("submit", (e)=>{
+            e.preventDefault();
+        });
+    
+        $("#todo-name").addEventListener("keypress", (e)=>{
+            if(e.key !== "Enter") { return; }
+            addTodo();
+        });
+    
+        $("#todo-submit-button").addEventListener("click", addTodo);
+    
+        $("#todo-list").addEventListener("click", (e)=>{
+            if(e.target.classList.contains("todo-edit-button")){ 
+                editTodo(e);
+                return;
+            }
+            if(e.target.classList.contains("todo-remove-button")){
+                removeTodo(e);
+                return;
+            }
+            if(e.target.classList.contains("todo-complete-button")){
+                completeTodo(e);
+                return;
+            }
+        });
+    }
 }
 
 const app = new App();
