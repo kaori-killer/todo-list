@@ -18,7 +18,7 @@ function App() {
         .map((item, index)=>{
                 return (
                     `<li data-todo-id=${index} class="todo-list-item d-flex items-center py-2">
-                    <span class="w-100 pl-2 todo-name complete">${item}</span>
+                    <span class="w-100 pl-2 todo-name">${item}</span>
                     <button
                     type="button"
                     class="bg-gray-50 text-gray-500 text-sm mr-1 todo-complete-button"
@@ -91,7 +91,7 @@ function App() {
     }
 
     const completeTodo = (e) => {
-
+        e.target.closest("li").querySelector(".todo-name").classList.toggle("completed");
     }
 
     $("#day-decrease-button").addEventListener("click", (e)=>{
