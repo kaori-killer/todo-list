@@ -20,7 +20,7 @@ function App() {
         .map((item, index)=>{
                 return (
                     `<li data-todo-id=${index} class="todo-list-item d-flex items-center py-2">
-                    <span class="w-100 pl-2 todo-name">${item}</span>
+                    <span class="${item.complete ? "completed" : ""} w-100 pl-2 todo-name">${item.name}</span>
                     <button
                     type="button"
                     class="bg-gray-50 text-gray-500 text-sm mr-1 todo-complete-button"
@@ -74,7 +74,7 @@ function App() {
         }
         const todoName = $("#todo-name").value;
         $("#todo-name").value = "";
-        this.todoList[this.curDateKey].push(todoName);
+        this.todoList[this.curDateKey].push({ name: todoName });
         store.setLocalStorage(this.todoList);
         render();
     }
@@ -84,7 +84,7 @@ function App() {
         const $newTodoName = e.target.closest("li").querySelector(".todo-name");
         const newTodoName = prompt("일정을 수정하세요", $newTodoName.innerText);
         if(!newTodoName) return;
-        this.todoList[this.curDateKey][todoId] = newTodoName;
+        this.todoList[this.curDateKey][todoId].name = newTodoName;
         store.setLocalStorage(this.todoList);
         render();
     }
@@ -98,7 +98,11 @@ function App() {
     }
 
     const completeTodo = (e) => {
-        e.target.closest("li").querySelector(".todo-name").classList.toggle("completed");
+        const todoId = e.target.closest("li").dataset.todoId;
+        console.log(this.todoList[this.curDateKey][todoId]);
+        this.todoList[this.curDateKey][todoId].complete = !this.todoList[this.curDateKey][todoId].complete; 
+        store.setLocalStorage(this.todoList);
+        render();
     }
 
     const initEventListener = () => {
