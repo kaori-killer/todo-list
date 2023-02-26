@@ -1,6 +1,6 @@
-import { $ } from "./utils/dom.js";
-import { store } from "./store/store.js";
-import { getStringDate } from "./date/date.js";
+import  $  from "./utils/dom.js";
+import  store  from "./store/store.js";
+import getStringDate  from "./date/date.js";
 
 function App() {
     this.curDate = new Date();
@@ -16,8 +16,7 @@ function App() {
     }
 
     const render = () => {
-        if(this.todoList[this.curDateKey] === undefined) { this.todoList[this.curDateKey] = []; }
-        const template = this.todoList[this.curDateKey]
+        if(this.todoList[this.curDateKey] === undefined) this.todoList[this.curDateKey] = [];        const template = this.todoList[this.curDateKey]
         .map((item, index)=>{
                 return (
                     `<li data-todo-id=${index} class="todo-list-item d-flex items-center py-2">
@@ -84,7 +83,8 @@ function App() {
         const todoId = e.target.closest("li").dataset.todoId;
         const $newTodoName = e.target.closest("li").querySelector(".todo-name");
         const newTodoName = prompt("일정을 수정하세요", $newTodoName.innerText);
-        this.todoList[this.curDateKey][todoId] = newTodoName ? newTodoName : $newTodoName.innerHTML;
+        if(!newTodoName) return;
+        this.todoList[this.curDateKey][todoId] = newTodoName;
         store.setLocalStorage(this.todoList);
         render();
     }

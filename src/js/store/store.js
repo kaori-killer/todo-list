@@ -1,4 +1,4 @@
-export const store = {
+const store = {
     setLocalStorage(todo) {
         localStorage.setItem("todo", JSON.stringify(todo));
     },
@@ -6,3 +6,5 @@ export const store = {
         return JSON.parse(localStorage.getItem("todo"));
     }
 }
+
+export default store;
